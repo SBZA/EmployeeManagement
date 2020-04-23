@@ -8,7 +8,6 @@ import { MsalService, BroadcastService } from '@azure/msal-angular';
 })
 export class NavbarComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
-  const graphMeEndpoint = 'https://graph.microsoft.com/v1.0/me';
   reason = '';
   constructor(
     private broadcastService: BroadcastService, private authService: MsalService
@@ -22,24 +21,4 @@ export class NavbarComponent implements OnInit {
   }
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 
-  login() {
-    const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
-
-    if (isIE) {
-      this.authService.loginRedirect({
-        extraScopesToConsent: ["user.read", "openid", "profile"]
-      });
-    } else {
-      this.authService.loginPopup({
-        extraScopesToConsent: ["user.read", "openid", "profile"]
-      });
-    }
-  }
-
-getProfile() {
-  this.http.get(graphMeEndpoint).toPromise()
-    .then(profile => {
-      this.profile = profile;
-    });
-}
 }
