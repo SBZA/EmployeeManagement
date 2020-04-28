@@ -18,6 +18,16 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { SearchComponent } from './search/search.component';
+import {MatCardModule} from '@angular/material/card';
+import { ListEmployeesComponent } from './list-employees/list-employees.component';
+
+import {MatButtonModule} from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -26,7 +36,9 @@ import {HttpClientModule} from '@angular/common/http';
     HomeComponent,
     AlertsComponent,
     LandingPageComponent,
-    FilterEmployeesComponent
+    FilterEmployeesComponent,
+    SearchComponent,
+    ListEmployeesComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +46,17 @@ import {HttpClientModule} from '@angular/common/http';
     NgbModule,
     FormsModule,
     HttpClientModule,
+    // Angular Material Imports
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatButtonToggleModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatGridListModule,
+    MatCardModule,
     FontAwesomeModule,
     MsalModule.forRoot({
       auth: {
