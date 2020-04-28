@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { User } from '../user';
 
@@ -18,7 +18,10 @@ export class HomeComponent implements OnInit {
     return this.authService.user;
   }
 
-  constructor(public authService: AuthService) { }
+  constructor(
+    public authService: AuthService,) {
+
+    }
 
   ngOnInit() {}
 

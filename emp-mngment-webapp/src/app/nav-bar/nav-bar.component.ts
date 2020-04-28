@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { User } from '../user';
 
@@ -21,7 +21,14 @@ export class NavBarComponent implements OnInit {
     return this.authService.user;
   }
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    public router: Router,
+    public route: ActivatedRoute) {
+    if(this.authenticated){
+      this.router.navigate(['landing-page']);
+    }
+  }
 
   ngOnInit() {
     this.showNav = false;

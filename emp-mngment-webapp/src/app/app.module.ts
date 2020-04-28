@@ -12,18 +12,31 @@ import { HomeComponent } from './home/home.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { MsalModule } from '@azure/msal-angular';
 import { OAuthSettings } from '../oath';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { FilterEmployeesComponent } from './filter-employees/filter-employees.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     HomeComponent,
-    AlertsComponent
+    AlertsComponent,
+    LandingPageComponent,
+    FilterEmployeesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatGridListModule,
     FontAwesomeModule,
     MsalModule.forRoot({
       auth: {
