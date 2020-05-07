@@ -2,33 +2,46 @@ package com.employeemanagement.employeemanagementservice;
 
 import com.employeemanagement.employeemanagementservice.Models.Employee;
 import com.employeemanagement.employeemanagementservice.Repositories.EmployeeRepository;
+import com.employeemanagement.employeemanagementservice.services.EmployeeManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class EmployeeManagementController {
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private EmployeeManagementService employeeManagementService;
 
     @RequestMapping("/save")
     public void registerEmployee(){
         Employee employee = new Employee(
                 "Sontaga", "Maluleke");
         employee.setBpid("Sontaga");
-        employeeRepository.save(employee);
+        employeeManagementService.save(employee);
     }
 
-    @GetMapping("/getstudents")
-    public Employee getEmployee(){
+    @GetMapping("/employees")
+    public List<Employee> getAllEmployees(){
+        return employeeManagementService.findAll();
+    }
+
+    @GetMapping("/getEmployee/{id}")
+    public Employee getEmployee(@PathVariable("id") String id){
         Employee retrievedEmployees =
-                employeeRepository.findById("Sontaga").get();
+                employeeManagementService.findById(id).get();
         return retrievedEmployees;
+    }
+    @GetMapping("/count")
+    public Long GetEmployeeCount(){
+        return employeeManagementService.count();
+    }
+    @RequestMapping("/archiveEmployee/{id}")
+    public void deleteEmpoyee(@PathVariable("id") String id){
+        employeeManagementService.deleteByUserId(id);
     }
 
     @GetMapping("/error")

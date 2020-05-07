@@ -26,6 +26,8 @@ public class Employee implements Serializable {
         this.setFirstName(FirstName);
         this.setLastName(LastName);
     }
+
+    public Employee(){}
     public String getBpid() {
         return id;
     }
