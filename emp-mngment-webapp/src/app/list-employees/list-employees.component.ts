@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeManagementService } from '../services/employee-management.service';
 
 @Component({
   selector: 'app-list-employees',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListEmployeesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public empService: EmployeeManagementService
+  ) {
+    this.empService.getAllEmployees().subscribe(
+      (obj) => {
+        console.log('Result is ' + obj);
+      }
+    );
+  }
 
   ngOnInit(): void {
   }

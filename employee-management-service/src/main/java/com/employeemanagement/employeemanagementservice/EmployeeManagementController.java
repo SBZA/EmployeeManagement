@@ -17,13 +17,10 @@ public class EmployeeManagementController {
     private EmployeeManagementService employeeManagementService;
 
     @RequestMapping("/save")
-    public void registerEmployee(){
-        Employee employee = new Employee(
-                "Sontaga", "Maluleke");
-        employee.setBpid("Sontaga");
+    public void registerEmployee(@PathVariable("employee") Employee employee){
         employeeManagementService.save(employee);
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/employees")
     public List<Employee> getAllEmployees(){
         return employeeManagementService.findAll();
