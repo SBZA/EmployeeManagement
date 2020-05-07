@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: sxbs-mall-consumer
+      # @@ignignClient("Same Service Name") on multiple interfaces will report an error, overriding is disabled.
+    # set to true, which allows the same name
+  main:
+    allow-bean-definition-overriding: true
