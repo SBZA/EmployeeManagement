@@ -20,8 +20,7 @@ public class Employee implements Serializable {
     private String Date_Joined;
     private String profile_pic_address;
     private String Position;
-    private int grade;
-
+    private Integer PhoneNumber;
 
     public Employee(String FirstName, String LastName){
         this.setFirstName(FirstName);
@@ -29,6 +28,14 @@ public class Employee implements Serializable {
     }
 
     public Employee(){}
+
+    public Integer getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(Integer phoneNumber) {
+        PhoneNumber = phoneNumber;
+    }
     public String getBpid() {
         return id;
     }
@@ -85,13 +92,6 @@ public class Employee implements Serializable {
         Position = position;
     }
 
-    public int getGrade() {
-        return grade;
-    }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
 
     // ...
 }

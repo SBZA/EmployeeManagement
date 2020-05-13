@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Employee } from '../modes/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,8 @@ export class EmployeeManagementService {
     private http: HttpClient
   ) { }
 
-  getAllEmployees(){
+  getAllEmployees(): Observable<Employee[]> {
     this.requestUrl = this.address + this.getAllEmployeesTag;
-    return this.http.get(this.requestUrl);
+    return this.http.get<Employee[]>(this.requestUrl);
   }
 }

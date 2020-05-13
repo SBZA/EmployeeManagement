@@ -4,7 +4,7 @@ mat-icon.mat-card-avatar {
   font-size: 40px;
 }
 .mat-card{
-  padding-bottom: 0%;
+  padding-bottom: 0px;
   border-radius: 15px;
 }
 .box:hover {

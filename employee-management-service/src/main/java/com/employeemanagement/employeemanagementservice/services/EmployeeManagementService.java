@@ -19,7 +19,9 @@ public class EmployeeManagementService implements IEmployeeManagementService {
         Iterable<Employee> employeeIterable = employeeRepository.findAll();
 
         ArrayList<Employee> users = new ArrayList<Employee>();
-        employeeIterable.forEach(e -> users.add(e));
+        employeeIterable.forEach(e ->
+                {
+                    if(e != null) users.add(e);});
         return users;
     }
 

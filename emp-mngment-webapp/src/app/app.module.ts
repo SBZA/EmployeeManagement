@@ -28,6 +28,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {MatSelectModule} from '@angular/material/select';
     FormsModule,
     HttpClientModule,
     // Angular Material Imports
+    MatListModule,
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
