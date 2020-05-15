@@ -9,7 +9,9 @@ import { Employee } from '../modes/employee';
 export class EmployeeManagementService {
   private address = 'http://localhost:8080/emp-mngment-app/';
   private getAllEmployeesTag = 'employees';
-  requestUrl = '';
+  private createNewEmployeesTag = 'save';
+  private requestUrl = '';
+  private postUrl = '';
   constructor(
     private http: HttpClient
   ) { }
@@ -17,5 +19,10 @@ export class EmployeeManagementService {
   getAllEmployees(): Observable<Employee[]> {
     this.requestUrl = this.address + this.getAllEmployeesTag;
     return this.http.get<Employee[]>(this.requestUrl);
+  }
+
+  // @input - Employee object
+  // @process - perform a post request through the employee postUrl
+  registerEmployee(employee: Employee) {
   }
 }

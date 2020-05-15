@@ -20,15 +20,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import {MatCardModule} from '@angular/material/card';
-import { ListEmployeesComponent } from './list-employees/list-employees.component';
+import { ListEmployeesComponent, DialogOverviewExampleDialog } from './list-employees/list-employees.component';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatListModule} from '@angular/material/list';
     LandingPageComponent,
     FilterEmployeesComponent,
     SearchComponent,
-    ListEmployeesComponent
+    ListEmployeesComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ import {MatListModule} from '@angular/material/list';
     FormsModule,
     HttpClientModule,
     // Angular Material Imports
+    MatDialogModule,
     MatListModule,
     MatSelectModule,
     MatFormFieldModule,
@@ -66,7 +69,8 @@ import {MatListModule} from '@angular/material/list';
       }
     })
   ],
-  providers: [],
+  entryComponents: [ListEmployeesComponent, DialogOverviewExampleDialog],
+  providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
@@ -75,3 +79,4 @@ export class AppModule {
     library.addIcons(faExternalLinkAlt, faUserCircle);
   }
  }
+
