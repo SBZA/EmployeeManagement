@@ -20,7 +20,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import {MatCardModule} from '@angular/material/card';
-import { ListEmployeesComponent, DialogOverviewExampleDialog } from './list-employees/list-employees.component';
+import { ListEmployeesComponent } from './list-employees/list-employees.component';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -42,7 +42,6 @@ import { RegisterEmployeeDialogComponent } from './list-employees/register-emplo
     FilterEmployeesComponent,
     SearchComponent,
     ListEmployeesComponent,
-    DialogOverviewExampleDialog,
     RegisterEmployeeDialogComponent
   ],
   imports: [
@@ -71,7 +70,7 @@ import { RegisterEmployeeDialogComponent } from './list-employees/register-emplo
       }
     })
   ],
-  entryComponents: [ListEmployeesComponent, DialogOverviewExampleDialog],
+  entryComponents: [ListEmployeesComponent],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent]
 })

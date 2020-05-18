@@ -42,7 +42,7 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   openDialog(){
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    const dialogRef = this.dialog.open(RegisterEmployeeDialogComponent, {
       width: '500px',
       data: {
         bpid: this.employee.bpid,
@@ -54,32 +54,18 @@ export class ListEmployeesComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed with: ' + JSON.stringify(result));
-      this.employee = result;
-      this.empService.registerEmployee(this.employee);
+      if(result != null) {
+        // console.log('The dialog was closed with: ' + JSON.stringify(result));
+        this.employee = result;
+        this.registerEmployee();
+        // this.empService.registerEmployee(this.employee);
+      }
     });
   }
-}
 
-@Component({
-  selector: 'dialog-employee',
-  templateUrl: 'dialog-employee.html',
-})
-export class DialogOverviewExampleDialog {
-
-  bpid = '';
-  firstName = '';
-  lastName = '';
-  location = '';
-  position = '';
-  phoneNumber = undefined;
-  profilePicAddress = '';
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: Employee) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
+  registerEmployee() {
+    this.empService.registerEmployee(this.employee).subscribe(response => {
+      console.log(JSON.stringify(response));
+    });
   }
-
 }

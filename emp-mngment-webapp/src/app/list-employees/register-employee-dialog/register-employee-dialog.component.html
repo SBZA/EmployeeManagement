@@ -43,7 +43,7 @@
       </tr>
   </table>
   <p>
-      <button mat-button type="submit" md-raised-button>Submit</button>
-      <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+      <button mat-button type="submit" md-raised-button (click) = 'onNoClick()'>Cancel</button>
+      <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Confirm</button>
   </p>
 </form>

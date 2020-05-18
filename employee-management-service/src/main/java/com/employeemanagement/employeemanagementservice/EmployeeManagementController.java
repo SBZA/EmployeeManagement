@@ -16,11 +16,10 @@ public class EmployeeManagementController {
     @Autowired
     private EmployeeManagementService employeeManagementService;
 
-    @RequestMapping("/save")
-    public void registerEmployee(@PathVariable("employee") Employee employee){
+    @PostMapping("/save")
+    public void registerEmployee(@RequestBody Employee employee){
         employeeManagementService.save(employee);
     }
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/employees")
     public List<Employee> getAllEmployees(){
         return employeeManagementService.findAll();

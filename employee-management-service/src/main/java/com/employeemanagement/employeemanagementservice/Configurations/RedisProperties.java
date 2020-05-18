@@ -1,4 +1,4 @@
-package com.employeemanagement.employeemanagementservice.Beans;
+package com.employeemanagement.employeemanagementservice.Configurations;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
