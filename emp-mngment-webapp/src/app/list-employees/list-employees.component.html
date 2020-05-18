@@ -2,6 +2,9 @@
   <button mat-fab color="primary" mat-raised-button (click)="openDialog()">
     <mat-icon>add</mat-icon>
   </button>
+  <button mat-fab color="primary" (click) = "deleteAllEmployees()">
+    <mat-icon>delete</mat-icon>
+  </button>
   <mat-nav-list>
     <h3 matSubheader>This is the list of employees</h3>
     <mat-list-item *ngFor="let emloyee of employeeList">
@@ -15,7 +18,7 @@
       <button mat-icon-button >
           <mat-icon>add</mat-icon>
       </button>
-      <button mat-icon-button>
+      <button mat-icon-button (click) = "deleteEmployee(emloyee)">
           <mat-icon>delete</mat-icon>
       </button>
     </mat-list-item>

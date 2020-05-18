@@ -3,6 +3,7 @@ import { EmployeeManagementService } from '../services/employee-management.servi
 import { Employee } from '../modes/employee';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {RegisterEmployeeDialogComponent} from './register-employee-dialog/register-employee-dialog.component';
+import { Route } from '@angular/compiler/src/core';
 @Component({
   selector: 'app-list-employees',
   templateUrl: './list-employees.component.html',
@@ -23,7 +24,7 @@ export class ListEmployeesComponent implements OnInit {
   firstName: string;
   constructor(
     public empService: EmployeeManagementService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {
     this.empService.getAllEmployees().subscribe(
       employees => {
@@ -33,11 +34,6 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-  }
-
-  // Removing an employee from the database
-  deleteEmployee(employee: Employee){
 
   }
 
@@ -55,7 +51,7 @@ export class ListEmployeesComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result != null) {
-        // console.log('The dialog was closed with: ' + JSON.stringify(result));
+        console.log('The dialog was closed with: ' + JSON.stringify(result));
         this.employee = result;
         this.registerEmployee();
         // this.empService.registerEmployee(this.employee);
@@ -64,8 +60,16 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   registerEmployee() {
-    this.empService.registerEmployee(this.employee).subscribe(response => {
-      console.log(JSON.stringify(response));
-    });
+    this.empService.registerEmployee(this.employee).subscribe();
+  }
+
+   // Removing an employee from the database
+   deleteEmployee(employee: Employee){
+    console.log('Attempting To Delete Employee: ' + employee.firstName);
+    this.empService.deleteEmployeeById(employee);
+  }
+
+  deleteAllEmployees() {
+    this.empService.deleteAllEmployees().subscribe();
   }
 }

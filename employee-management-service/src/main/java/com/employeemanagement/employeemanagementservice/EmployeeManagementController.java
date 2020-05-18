@@ -35,16 +35,24 @@ public class EmployeeManagementController {
     public Long GetEmployeeCount(){
         return employeeManagementService.count();
     }
-    @RequestMapping("/archiveEmployee/{id}")
-    public void deleteEmpoyee(@PathVariable("id") String id){
-        employeeManagementService.deleteByUserId(id);
-    }
 
     @GetMapping("/error")
     public String error(){
         return "Could not start-up application";
     }
 
+    @PostMapping("/archiveEmployee")
+    public void deleteEmpoyee(@RequestBody Employee employee){
+        employeeManagementService.deleteByUserId(employee.getBpid());
+    }
 
+    @PostMapping("/delete")
+    public void deleteEmployee(@RequestBody Employee employee){
+        employeeManagementService.deleteEmployee(employee);
+    }
 
+    @PostMapping
+    public void deleteAllEmployees() {
+        employeeManagementService.deleteAllEmployees();
+    }
 }

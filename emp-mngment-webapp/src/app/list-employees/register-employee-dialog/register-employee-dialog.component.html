@@ -2,39 +2,57 @@
   <table class="fullwidth" cellspacing="0">
       <tr>
           <td>
-              <mat-form-field class="fullwidth">
-                  <input matInput placeholder="First Name" id="firstName" [(ngModel)]="data.firstName" name="firstName">
+              <mat-form-field appearance="outline" >
+                <mat-label>First Name</mat-label>
+                <input matInput id="firstName" [(ngModel)]="data.firstName" name="firstName">
+                <mat-icon matSuffix>account_box</mat-icon>
               </mat-form-field>
           </td>
           <td>
-              <mat-form-field class="fullwidth">
-                  <input matInput placeholder="Last Name" id="lastName" [(ngModel)]="data.lastName" name="lastName">
+              <mat-form-field appearance="outline" >
+                  <mat-label>Last Name</mat-label>
+                  <input matInput id="lastName" [(ngModel)]="data.lastName" name="lastName">
+                  <mat-icon matSuffix>account_box</mat-icon>
               </mat-form-field>
           </td>
       </tr>
       <tr>
         <td>
-          <mat-form-field class="fullwidth">
-            <input matInput value="" placeholder="Phone Number" id="phoneNumber" [(ngModel)]="data.phoneNumber" name="phoneNumber">
+          <mat-form-field appearance="outline" >
+            <mat-label>Cellphone Number</mat-label>
+            <input matInput id="phoneNumber" [(ngModel)]="data.phoneNumber" name="phoneNumber">
+            <mat-icon matSuffix>phone</mat-icon>
           </mat-form-field>
         </td>
           <td>
-              <mat-form-field class="fullwidth">
-                  <input matInput placeholder="E-Mail Address" id="bpid" [(ngModel)]="data.bpid" name="bpid">
+              <mat-form-field appearance="outline">
+                  <mat-label>E-Mail Address</mat-label>
+                  <input matInput id="bpid" [(ngModel)]="data.bpid" name="bpid">
+                  <mat-icon matSuffix>email</mat-icon>
               </mat-form-field>
           </td>
       </tr>
       <tr>
           <td>
-              <mat-form-field class="fullwidth">
-                <textarea matInput placeholder="position" id="position" [(ngModel)]="data.position" name="position"></textarea>
+              <mat-form-field appearance="outline">
+                <mat-label>Job Position</mat-label>
+                <input matInput placeholder="Position" id="position" [(ngModel)]="data.position" name="position">
+                <mat-icon matSuffix>business_center</mat-icon>
+
               </mat-form-field>
           </td>
       </tr>
       <tr>
         <td>
-          <mat-form-field class="fullwidth">
-            <textarea matInput placeholder="location" id="location" [(ngModel)]="data.location" name="location"></textarea>
+          <mat-form-field appearance="outline">
+            <mat-label>Placement Location</mat-label>
+            <select matNativeControl required name="location" [(ngModel)]="data.location">
+              <option  *ngFor="let location of locations" [value] = "location.address">
+                {{location.displayName}}
+              </option>
+            </select>
+            <!-- <input matInput placeholder="Location" id="location" [(ngModel)]="data.location" name="location"> -->
+            <mat-icon matSuffix>public</mat-icon>
           </mat-form-field>
         </td>
       </tr>
