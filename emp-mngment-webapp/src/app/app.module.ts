@@ -30,6 +30,7 @@ import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/mater
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
+import { RegisterEmployeeDialogComponent } from './list-employees/register-employee-dialog/register-employee-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     FilterEmployeesComponent,
     SearchComponent,
     ListEmployeesComponent,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    RegisterEmployeeDialogComponent
   ],
   imports: [
     BrowserModule,

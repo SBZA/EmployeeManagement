@@ -23,6 +23,8 @@ export class EmployeeManagementService {
 
   // @input - Employee object
   // @process - perform a post request through the employee postUrl
-  registerEmployee(employee: Employee) {
+  registerEmployee(employee: Employee): Observable<any> {
+    this.postUrl = this.address + this.createNewEmployeesTag;
+    return this.http.post(this.postUrl, employee);
   }
 }

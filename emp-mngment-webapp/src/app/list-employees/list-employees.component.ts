@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { EmployeeManagementService } from '../services/employee-management.service';
 import { Employee } from '../modes/employee';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-
+import {RegisterEmployeeDialogComponent} from './register-employee-dialog/register-employee-dialog.component';
 @Component({
   selector: 'app-list-employees',
   templateUrl: './list-employees.component.html',
@@ -59,7 +59,6 @@ export class ListEmployeesComponent implements OnInit {
       this.empService.registerEmployee(this.employee);
     });
   }
-
 }
 
 @Component({
