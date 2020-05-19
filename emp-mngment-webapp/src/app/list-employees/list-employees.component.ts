@@ -42,6 +42,10 @@ export class ListEmployeesComponent implements OnInit {
     this.dialogService.openDialog();
   }
 
+  viewEmployeeDialog(employee: Employee){
+    this.dialogService.openDialog(employee);
+  }
+
   registerEmployee() {
     this.empService.registerEmployee(this.employee).subscribe();
   }

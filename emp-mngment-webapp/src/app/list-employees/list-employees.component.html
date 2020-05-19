@@ -7,7 +7,7 @@
   </button>
   <mat-nav-list>
     <h3 matSubheader>This is the list of employees</h3>
-    <mat-list-item *ngFor="let emloyee of employeeList">
+    <mat-list-item *ngFor="let emloyee of employeeList" (click) = "viewEmployeeDialog(emloyee)">
       <img matListAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Photo of a Shiba Inu">
       <h3 matLine> {{emloyee.firstName + ' ' + emloyee.lastName}} </h3>
       <p matLine>

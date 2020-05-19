@@ -23,20 +23,36 @@ export class DialogService {
     public empService: EmployeeManagementService
   ) { }
 
-  openDialog(){
-    const dialogRef = this.dialog.open(RegisterEmployeeDialogComponent, {
-      width: '500px',
-      data: {
-        bpid: this.employee.bpid,
-        firstName: this.employee.firstName,
-        lastName: this.employee.lastName,
-        phoneNumber: this.employee.phoneNumber,
-        position: this.employee.position,
-        location: this.employee.location
-      }
-    });
+  openDialog(data?: Employee){
+    let dialogRef;
+    if (data != null) {
+      dialogRef = this.dialog.open(RegisterEmployeeDialogComponent, {
+        width: '500px',
+        data: {
+          bpid: data.bpid,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          phoneNumber: data.phoneNumber,
+          position: data.position,
+          location: data.location
+        }
+      });
+    }
+    else {
+      dialogRef = this.dialog.open(RegisterEmployeeDialogComponent, {
+        width: '500px',
+        data: {
+          bpid: this.employee.bpid,
+          firstName: this.employee.firstName,
+          lastName: this.employee.lastName,
+          phoneNumber: this.employee.phoneNumber,
+          position: this.employee.position,
+          location: this.employee.location
+        }
+      });
+    }
     dialogRef.afterClosed().subscribe(result => {
-      if(result != null) {
+      if (result != null) {
         console.log('The dialog was closed with: ' + JSON.stringify(result));
         this.employee = result;
         this.empService.registerEmployee(this.employee);

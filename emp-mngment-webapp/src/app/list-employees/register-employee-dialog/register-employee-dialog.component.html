@@ -47,7 +47,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Placement Location</mat-label>
             <select matNativeControl required name="location" [(ngModel)]="data.location">
-              <option  *ngFor="let location of locations" [value] = "location.address">
+              <option  *ngFor="let location of locations" >
                 {{location.displayName}}
               </option>
             </select>
