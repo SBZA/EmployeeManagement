@@ -4,6 +4,7 @@ import { Employee } from '../modes/employee';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {RegisterEmployeeDialogComponent} from './register-employee-dialog/register-employee-dialog.component';
 import { Route } from '@angular/compiler/src/core';
+import { DialogService } from '../services/dialog.service';
 @Component({
   selector: 'app-list-employees',
   templateUrl: './list-employees.component.html',
@@ -24,7 +25,7 @@ export class ListEmployeesComponent implements OnInit {
   firstName: string;
   constructor(
     public empService: EmployeeManagementService,
-    public dialog: MatDialog,
+    public dialogService: DialogService
   ) {
     this.empService.getAllEmployees().subscribe(
       employees => {
@@ -38,25 +39,7 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   openDialog(){
-    const dialogRef = this.dialog.open(RegisterEmployeeDialogComponent, {
-      width: '500px',
-      data: {
-        bpid: this.employee.bpid,
-        firstName: this.employee.firstName,
-        lastName: this.employee.lastName,
-        phoneNumber: this.employee.phoneNumber,
-        position: this.employee.position,
-        location: this.employee.location
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result != null) {
-        console.log('The dialog was closed with: ' + JSON.stringify(result));
-        this.employee = result;
-        this.registerEmployee();
-        // this.empService.registerEmployee(this.employee);
-      }
-    });
+    this.dialogService.openDialog();
   }
 
   registerEmployee() {
@@ -65,11 +48,12 @@ export class ListEmployeesComponent implements OnInit {
 
    // Removing an employee from the database
    deleteEmployee(employee: Employee){
-    console.log('Attempting To Delete Employee: ' + employee.firstName);
-    this.empService.deleteEmployeeById(employee);
+    this.empService.deleteEmployeeById(employee).subscribe();
   }
 
   deleteAllEmployees() {
     this.empService.deleteAllEmployees().subscribe();
   }
+
+
 }

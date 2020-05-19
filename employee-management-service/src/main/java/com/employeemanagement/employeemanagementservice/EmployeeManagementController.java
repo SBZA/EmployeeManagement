@@ -41,17 +41,17 @@ public class EmployeeManagementController {
         return "Could not start-up application";
     }
 
-    @PostMapping("/archiveEmployee")
-    public void deleteEmpoyee(@RequestBody Employee employee){
-        employeeManagementService.deleteByUserId(employee.getBpid());
+    @PostMapping("/archiveEmployeeById")
+    public void deleteEmpoyee(@RequestBody String id){
+        employeeManagementService.deleteByUserId(id);
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/archiveEmployeeByObject")
     public void deleteEmployee(@RequestBody Employee employee){
         employeeManagementService.deleteEmployee(employee);
     }
 
-    @PostMapping
+    @PostMapping("/archiveAllEmployees")
     public void deleteAllEmployees() {
         employeeManagementService.deleteAllEmployees();
     }

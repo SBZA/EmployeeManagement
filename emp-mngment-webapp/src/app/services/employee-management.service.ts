@@ -10,9 +10,9 @@ export class EmployeeManagementService {
   private address = 'http://localhost:8080/emp-mngment-app/';
   private getAllEmployeesTag = 'employees';
   private createNewEmployeesTag = 'save';
-  private deleteEmployeesByIdTag = 'archiveEmployee';
-  private deleteEmployeesTag = 'archiveEmployee';
-
+  private archiveEmployeesByIdTag = 'archiveEmployeeById';
+  private archiveEmployeeByObjectTag = 'archiveEmployeeByObject';
+  private archiveAllEmployeesTag = 'archiveAllEmployees';
   private requestUrl = '';
   private postUrl = '';
   constructor(
@@ -33,14 +33,21 @@ export class EmployeeManagementService {
 
   // Removing an employee from the database
   deleteEmployeeById(employee: Employee){
-    console.log('Attempting To Delete Employee: ' + employee.firstName);
-    this.postUrl = this.address + this.deleteEmployeesByIdTag;
-    return this.http.post(this.postUrl, employee);
+    console.log('Attempting To Delete Employee:' + employee.bpid);
+    this.postUrl = this.address + this.archiveEmployeesByIdTag;
+    console.log('Using address:' + this.postUrl);
+    return this.http.post(this.postUrl, employee.bpid);
   }
 
+  deleteEmployeeByObject(employee: Employee){
+    console.log('Attempting To Delete Employee:' + employee.bpid);
+    this.postUrl = this.address + this.archiveEmployeeByObjectTag;
+    console.log('Using address:' + this.postUrl);
+    return this.http.post(this.postUrl, employee);
+  }
   deleteAllEmployees(){
     console.log('Attempting To Delete All Employees');
-    this.postUrl = this.address + this.deleteEmployeesTag;
+    this.postUrl = this.address + this.archiveAllEmployeesTag;
     return this.http.post(this.postUrl, '');
   }
 }
