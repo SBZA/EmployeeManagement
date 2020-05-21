@@ -5,6 +5,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import {RegisterEmployeeDialogComponent} from './register-employee-dialog/register-employee-dialog.component';
 import { Route } from '@angular/compiler/src/core';
 import { DialogService } from '../services/dialog.service';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-list-employees',
   templateUrl: './list-employees.component.html',
@@ -13,6 +14,7 @@ import { DialogService } from '../services/dialog.service';
 export class ListEmployeesComponent implements OnInit {
   employeeList: Employee[];
   location: 'Location: ';
+  isLoggedIn: boolean;
   public employee: Employee = {
     bpid: '',
     firstName: '',
@@ -25,17 +27,26 @@ export class ListEmployeesComponent implements OnInit {
   firstName: string;
   constructor(
     public empService: EmployeeManagementService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private authService: AuthService,
   ) {
     this.empService.getAllEmployees().subscribe(
       employees => {
         this.employeeList = employees;
       }
     );
+    this.isLoggedIn = this.authenticated;
+
   }
+
 
   ngOnInit(): void {
 
+  }
+
+  // Is a user logged in?
+  get authenticated(): boolean {
+    return this.authService.authenticated;
   }
 
   openDialog(){
