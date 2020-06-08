@@ -50,5 +50,11 @@ export class EmployeeManagementService {
     this.postUrl = this.address + this.archiveAllEmployeesTag;
     return this.http.post(this.postUrl, '');
   }
+
+  getEmployee(userId: string): Observable<Employee[]> {
+    console.log(userId)
+    this.requestUrl = this.address + this.getAllEmployeesTag;
+    return this.http.get<Employee[]>(this.requestUrl);
+  }
 }
 
