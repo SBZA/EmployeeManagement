@@ -1,11 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeManagementService } from '../services/employee-management.service';
 import { Employee } from '../modes/employee';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {RegisterEmployeeDialogComponent} from './register-employee-dialog/register-employee-dialog.component';
-import { Route } from '@angular/compiler/src/core';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+
 import { DialogService } from '../services/dialog.service';
 import { AuthService } from '../auth.service';
+import { Subject } from 'rxjs';
+
 @Component({
   selector: 'app-list-employees',
   templateUrl: './list-employees.component.html',
@@ -13,8 +15,18 @@ import { AuthService } from '../auth.service';
 })
 export class ListEmployeesComponent implements OnInit {
   employeeList: Employee[];
+  searchArray: Employee[];
   location: 'Location: ';
   isLoggedIn: boolean;
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
+  value = '';
+  private userIdSubject = new Subject<string>();
+  private employees: Employee[] = [];
+  readonly blogPosts$ = this.userIdSubject.pipe(
+    debounceTime(250),
+    distinctUntilChanged(),
+    switchMap(userId => this.empService.searchEmployeeByName(userId, this.employees))
+  );
   public employee: Employee = {
     bpid: '',
     firstName: '',
@@ -70,5 +82,25 @@ export class ListEmployeesComponent implements OnInit {
     this.empService.deleteAllEmployees().subscribe();
   }
 
+  searchPosts(userId: string) {
+    this.searchArray = [...this.employeeList];
+    if(userId.length < 1) {
+      this.clearSearch();
+    }else {
+      this.empService.searchEmployeeByName(userId, this.searchArray).subscribe(
+        (res) => {
+          this.employeeList = res;
+        }
+      );
+    }
+  }
 
+  clearSearch(){
+    this.empService.getAllEmployees().subscribe(
+      employees => {
+        this.employeeList = employees;
+      }
+    );
+
+  }
 }

@@ -3,6 +3,7 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { EmployeeManagementService } from '../services/employee-management.service';
+import { Employee } from '../modes/employee';
 
 @Component({
   selector: 'app-search',
@@ -11,10 +12,11 @@ import { EmployeeManagementService } from '../services/employee-management.servi
 })
 export class SearchComponent implements OnInit {
   private userIdSubject = new Subject<string>();
+  private employees: Employee[] = [];
   readonly blogPosts$ = this.userIdSubject.pipe(
     debounceTime(250),
     distinctUntilChanged(),
-    switchMap(userId => this.employeeService.getEmployee(userId))
+    switchMap(userId => this.employeeService.searchEmployeeByName(userId, this.employees))
   );
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
   value = '';
@@ -24,6 +26,9 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.employeeService.getAllEmployees().subscribe((allEmployees) => {
+      this.employees = allEmployees;
+    });
   }
 
   searchPosts(userId: string) {

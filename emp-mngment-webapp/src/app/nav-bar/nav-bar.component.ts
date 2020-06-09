@@ -18,6 +18,7 @@ export class NavBarComponent implements OnInit {
   }
   // The user
   get user(): User {
+    var temp: User = this.authService.user;
     return this.authService.user;
   }
 

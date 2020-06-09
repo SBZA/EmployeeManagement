@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Employee } from '../modes/employee';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeManagementService {
+
+  ///////////////////////////////////////////////////////////////////
+  // For requests to persistence
   private address = 'http://localhost:8080/emp-mngment-app/';
   private getAllEmployeesTag = 'employees';
   private createNewEmployeesTag = 'save';
@@ -15,6 +19,10 @@ export class EmployeeManagementService {
   private archiveAllEmployeesTag = 'archiveAllEmployees';
   private requestUrl = '';
   private postUrl = '';
+  //////////////////////////////////////////////////////////////////
+
+  // For Live Search
+  private employees: Employee[];
   constructor(
     private http: HttpClient
   ) { }
@@ -56,5 +64,19 @@ export class EmployeeManagementService {
     this.requestUrl = this.address + this.getAllEmployeesTag;
     return this.http.get<Employee[]>(this.requestUrl);
   }
+
+  searchEmployeeByName(userId: string, employees: Employee[]): Observable<Employee[]> {
+    // this.requestUrl = this.address + this.getAllEmployeesTag;
+    this.employees = [];
+    employees.forEach((tempEmployee: Employee) => {
+      if (tempEmployee.firstName.indexOf(userId) >= 0) {
+        this.employees.push(tempEmployee);
+      }
+    }
+    );
+    return this.employees.length > 0 ? of(this.employees) : of(employees);
+    // return this.http.get<Employee[]>(this.requestUrl);
+  }
+
 }
 
