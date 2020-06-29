@@ -10,6 +10,8 @@ import { User } from '../user';
 })
 export class HomeComponent implements OnInit {
   // Is a user logged in?
+  showSpinner: boolean;
+
   get authenticated(): boolean {
     return this.authService.authenticated;
   }
@@ -19,13 +21,25 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(
-    public authService: AuthService,) {
+    public authService: AuthService,
+    public router: Router,
+    ) {
 
     }
 
   ngOnInit() {}
 
   async signIn(): Promise<void> {
-    await this.authService.signIn();
+    this.showSpinner = true;
+    await this.authService.signIn().then(
+      () => {
+        this.showSpinner = false;
+      }
+    ).finally(
+      () => {
+        this.showSpinner = false;
+        this.router.navigate(['landing-page']);
+      }
+    );
   }
 }

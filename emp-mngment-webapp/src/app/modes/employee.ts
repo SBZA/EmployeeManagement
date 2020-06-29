@@ -7,4 +7,5 @@ export interface Employee {
   profile_pic_address: string;
   position: string;
   phoneNumber: number;
+  dateJoined: string;
 }

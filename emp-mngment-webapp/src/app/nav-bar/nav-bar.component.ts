@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { User } from '../user';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,6 +14,7 @@ export class NavBarComponent implements OnInit {
 
   // Should the collapsed nav show?
   showNav: boolean;
+  showSpinner: boolean;
   // Is a user logged in?
   get authenticated(): boolean {
     return this.authService.authenticated;
@@ -21,12 +24,16 @@ export class NavBarComponent implements OnInit {
     var temp: User = this.authService.user;
     return this.authService.user;
   }
-
+  // Spinner
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'determinate';
+  value = 50;
   constructor(
     private authService: AuthService,
     public router: Router,
     public route: ActivatedRoute) {
     if(this.authenticated){
+      this.showSpinner = false;
       this.router.navigate(['landing-page']);
     }
   }
@@ -42,7 +49,17 @@ export class NavBarComponent implements OnInit {
   }
 
   async signIn(): Promise<void> {
-    await this.authService.signIn();
+    this.showSpinner = true;
+    await this.authService.signIn().then(
+      () => {
+        this.showSpinner = false;
+      }
+    ).finally(
+      () => {
+        this.showSpinner = false;
+        this.router.navigate(['landing-page']);
+      }
+    );
   }
 
   signOut(): void {

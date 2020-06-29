@@ -1,1 +1,38 @@
+<div class="row" *ngIf="!showSpinner">
+  <div class="col"></div>
+  <div class="col">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>@Work Portal</mat-card-title>
+        <mat-card-subtitle>Employee Management Portal</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/welcome-church-poster-template-f8a59746d1ccbe9e4b1e3c0876aecebe_screen.jpg?ts=1561467954" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          The <strong>@Work Portal</strong> enables you to manage employee information using CRUD functionalities
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col">
+            <button mat-raised-button color="accent" (click) = 'signIn()'>Login With Microsoft Login</button>
+          </div>
+          <div class="col"></div>
+        </div>
 
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+  <div class="col"></div>
+</div>
+
+<div class="row" *ngIf="showSpinner">
+  <div class="col"></div>
+  <div class="col">
+    <mat-spinner class="spinner" ></mat-spinner>
+  </div>
+  <div class="col"></div>
+</div>

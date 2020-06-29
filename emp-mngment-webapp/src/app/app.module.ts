@@ -30,8 +30,10 @@ import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/mater
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { RegisterEmployeeDialogComponent } from './list-employees/register-employee-dialog/register-employee-dialog.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { RegisterEmployeeDialogComponent } from './list-employees/register-emplo
     FormsModule,
     HttpClientModule,
     // Angular Material Imports
+    MatProgressSpinnerModule,
     MatDialogModule,
     MatListModule,
     MatSelectModule,
@@ -63,6 +66,8 @@ import { RegisterEmployeeDialogComponent } from './list-employees/register-emplo
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatGridListModule,
+    MatTabsModule,
+    MatSnackBarModule,
     MatCardModule,
     FontAwesomeModule,
     MsalModule.forRoot({

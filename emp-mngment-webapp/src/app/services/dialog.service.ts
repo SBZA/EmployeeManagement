@@ -16,7 +16,8 @@ export class DialogService {
     location: '',
     position: '',
     phoneNumber: 0,
-    profile_pic_address: ''
+    profile_pic_address: '',
+    dateJoined: ''
   };
   constructor(
     public dialog: MatDialog,

@@ -7,6 +7,7 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { DialogService } from '../services/dialog.service';
 import { AuthService } from '../auth.service';
 import { Subject } from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list-employees',
@@ -34,13 +35,15 @@ export class ListEmployeesComponent implements OnInit {
     location: '',
     position: '',
     phoneNumber: 0,
-    profile_pic_address: ''
+    profile_pic_address: '',
+    dateJoined: ''
   };
   firstName: string;
   constructor(
     public empService: EmployeeManagementService,
     public dialogService: DialogService,
     private authService: AuthService,
+    private snackBar: MatSnackBar
   ) {
     this.empService.getAllEmployees().subscribe(
       employees => {
@@ -101,6 +104,12 @@ export class ListEmployeesComponent implements OnInit {
         this.employeeList = employees;
       }
     );
+    this.openSnackBar('Cleared List', 'Close');
+  }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }
